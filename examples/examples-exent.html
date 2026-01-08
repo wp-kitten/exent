@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXENT - Data Transfer Format</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --exent-primary: #0066ff;
+            --exent-dark: #0a0a0a;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .code-block {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #e0e0e0;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre-wrap;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            font-size: 0.9rem;
+            min-height: 400px;
+            outline: none;
+        }
+        .code-block:focus {
+            border-color: var(--exent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+        .btn-primary {
+            background: var(--exent-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .feature-card {
+            border: none;
+            border-radius: 16px;
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .type-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.4rem;
+            margin-right: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+        .tag-date { background: #e3f2fd; color: #0d47a1; border: 1px solid #bbdefb; }
+        .tag-bigint { background: #f3e5f5; color: #4a148c; border: 1px solid #e1bee7; }
+        .tag-decimal { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 mb-5">
+        <div class="container">
+            <a class="navbar-brand text-primary fs-3" href="../index.php">EXENT</a>
+            <div class="ms-auto d-flex gap-3">
+                <a href="../index.php" class="btn btn-link text-decoration-none text-dark fw-semibold">Home</a>
+                <a href="../specifications.php" class="btn btn-link text-decoration-none text-dark fw-semibold">Specifications</a>
+                <a href="examples-exent-php.html" class="btn btn-outline-primary fw-semibold">PHP Examples</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Beyond JSON. Better than XML.</h1>
+            <p class="fs-4 text-muted mx-auto" style="max-width: 800px;">
+                EXENT (EXtended ENtity Transfer) is the next-generation data transfer object designed for the modern web.
+            </p>
+        </header>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm feature-card border-0">
+                    <div class="card-body">
+                        <h3 class="fs-5 fw-bold text-primary mb-3">Human Friendly</h3>
+                        <p class="text-muted">Comments, optional quotes, and trailing commas make EXENT as readable as a configuration file while maintaining strict data integrity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm feature-card border-0">
+                    <div class="card-body">
+                        <h3 class="fs-5 fw-bold text-primary mb-3">Rich Data Types</h3>
+                        <p class="text-muted">First-class support for Dates, BigInt, and high-precision Decimals. No more string-parsing hacks for basic data types.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm feature-card border-0">
+                    <div class="card-body">
+                        <h3 class="fs-5 fw-bold text-primary mb-3">High Performance</h3>
+                        <p class="text-muted">Includes a native binary mode (B-EXENT) for rapid machine-to-machine communication with minimal overhead.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="fs-2 mb-4">Input: EXENT Code</h2>
+                <div class="code-block" id="exent-input" contenteditable="true">
+// EXENT Configuration
+{
+    project: EXENT
+    version: 1.0.0
+    
+    /* 
+       Native Date literals!
+    */
+    release_date: @2025-12-26
+    
+    description: `
+        EXENT is a bulletproof
+        data transfer object.
+    `
+    
+    stats: {
+        // BigInt support
+        requests: 5000000000n
+        // Decimal support
+        latency: 0.15d
+    }
+    
+    // Reference system
+    default_config: &defaults {
+        theme: dark
+        timeout: 3000
+    }
+    
+    user_settings: *defaults
+    
+    tags: [
+        high-performance
+        modern
+        bulletproof, // Trailing commas allowed
+    ]
+}
+                </div>
+                <button class="btn btn-primary w-100 mt-3 py-2 fw-bold" id="parse-btn">Parse EXENT &rarr;</button>
+            </div>
+            <div class="col-md-6">
+                <h2 class="fs-2 mb-4">Output: JS Object</h2>
+                <div class="code-block" id="js-output">
+Click parse to see the result...
+                </div>
+                <div class="alert alert-info mt-3">
+                    <strong>Note:</strong> Observe how Dates and BigInts are correctly parsed as native JavaScript types.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/exent.js"></script>
+    <script>
+        document.getElementById('parse-btn').addEventListener('click', () => {
+            const input = document.getElementById('exent-input').innerText;
+            const output = document.getElementById('js-output');
+            
+            try {
+                // Using Exent standalone
+                const parsed = Exent.parse(input);
+                console.log("Parsed Object:", parsed);
+                
+                // Custom stringifier to show types
+                const escapeHtml = (unsafe) => {
+                    return unsafe
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/'/g, "&#039;");
+                };
+
+                const displayValue = (val, indent = '') => {
+                    const nextIndent = indent + '    ';
+                    if (typeof val === 'bigint') {
+                        return `<span class="type-tag tag-bigint">BigInt</span>${val.toString()}n`;
+                    }
+                    if (val instanceof Date) {
+                        return `<span class="type-tag tag-date">Date</span>"${val.toISOString()}"`;
+                    }
+                    if (typeof val === 'number' && input.includes(val + 'd')) {
+                        return `<span class="type-tag tag-decimal">Decimal</span>${val}`;
+                    }
+                    if (Array.isArray(val)) {
+                        if (val.length === 0) {
+                            return '[]';
+                        }
+                        return '[\n' + val.map(v => nextIndent + displayValue(v, nextIndent)).join(',\n') + '\n' + indent + ']';
+                    }
+                    if (typeof val === 'object' && val !== null) {
+                        const keys = Object.keys(val);
+                        if (keys.length === 0) {
+                            return '{}';
+                        }
+                        return '{\n' + keys.map(k => nextIndent + '"' + escapeHtml(k) + '": ' + displayValue(val[k], nextIndent)).join(',\n') + '\n' + indent + '}';
+                    }
+                    if (typeof val === 'string') {
+                        return '"' + escapeHtml(val) + '"';
+                    }
+                    return JSON.stringify(val);
+                };
+                
+                output.innerHTML = displayValue(parsed);
+                output.style.borderColor = "#ddd";
+            } catch (e) {
+                output.innerText = "Error: " + e.message;
+                output.style.borderColor = "red";
+            }
+        });
+    </script>
+</body>
+</html>
